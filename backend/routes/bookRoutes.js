@@ -14,8 +14,8 @@ router.get('/', async(req, res) => {
 
 router.post('/add', async(req, res) => {
     try {
-       const {title, author} = req.body;
-       const newBook = new Book({title, author});
+       const {bookname, author, price, quantity} = req.body;
+       const newBook = new Book({bookname, author, price, quantity});
        const savedBooks = await newBook.save();
        res.json(savedBooks); 
     } catch (err) {
@@ -26,8 +26,8 @@ router.post('/add', async(req, res) => {
 
 router.put('/edit/:id', async (req, res) =>{
     try {
-        const {title, author} = req.body;
-        const updatedBook = await Book.findByIdAndUpdate(req.params.id, {title, author}, {new: true});
+        const {bookname, author, price, quantity} = req.body;
+        const updatedBook = await Book.findByIdAndUpdate(req.params.id, {bookname, author, price, quantity}, {new: true});
         res.json(updatedBook);
     } catch (err) {
         console.error(err);
